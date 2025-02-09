@@ -52,7 +52,7 @@ try:
     mycursor = mydb.cursor()
 
     # Use the specified database
-    mycursor.execute(f"USE {args.database};")
+    mycursor.execute(f"USE alx_book_store;")
 
     # Show tables
     mycursor.execute("SHOW TABLES;")
