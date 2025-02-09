@@ -12,7 +12,7 @@ try:
     mycursor = mydb.cursor()
 
     # Query to list all tables in the database
-    mycursor.execute("SHOW TABLES")
+    mycursor.execute("USE alx_book_store;")
 
     # Fetch all tables and print them
     tables = mycursor.fetchall()
