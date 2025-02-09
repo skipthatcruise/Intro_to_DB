@@ -1,29 +1,29 @@
 import mysql.connector
 import argparse
 
-# Set up argument parser
+# Set up argument parser to accept database name
 parser = argparse.ArgumentParser(description="List full description of the 'books' table.")
 parser.add_argument("database", help="The name of the MySQL database")
 args = parser.parse_args()
 
 try:
-    # Connect to MySQL (without specifying a database in the connection)
+    # Connect to MySQL
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password"
+        password="password"  # Replace with your password
     )
 
     mycursor = mydb.cursor()
 
-    # Use the specified database
+    # Select the database
     mycursor.execute(f"USE {args.database};")
 
     # Query to fetch full description of the 'books' table from INFORMATION_SCHEMA
     mycursor.execute("""
     SELECT
         COLUMN_NAME,
-        DATA_TYPE,
+        COLUMN_TYPE,
         IS_NULLABLE,
         COLUMN_DEFAULT,
         CHARACTER_MAXIMUM_LENGTH,
@@ -32,7 +32,7 @@ try:
     FROM
         INFORMATION_SCHEMA.COLUMNS
     WHERE
-        TABLE_SCHEMA = DATABASE() AND
+        TABLE_SCHEMA = 'alx_book_store' AND
         TABLE_NAME = 'books';
     """)
 
@@ -44,7 +44,7 @@ try:
         for column in columns:
             print(f"""
             Column Name: {column[0]}
-            Data Type: {column[1]}
+            Column Type: {column[1]}
             Is Nullable: {column[2]}
             Default Value: {column[3]}
             Max Length: {column[4]}
