@@ -48,4 +48,3 @@ finally:
     if 'mydb' in locals() and mydb.is_connected():
         mydb.close()
     print("🔒 Connection closed.")
-
