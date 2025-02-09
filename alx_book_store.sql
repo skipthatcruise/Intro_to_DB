@@ -9,7 +9,7 @@ database="alx_book_store"
 
 mycursor = mydb.cursor()
 
-CREATE DATABASE IF NOT EXISTS alx_book_store;
+mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
 
 mycursor.execute("""CREATE TABLE IF NOT EXISTS Books(
 book_id INT AUTO_INCREMENT PRIMARY KEY,
